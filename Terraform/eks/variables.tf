@@ -8,3 +8,6 @@ variable "cluster_name" {
     type = string
     default ="test"
 }
+variable "eksversion" {
+  type = "string"
+}

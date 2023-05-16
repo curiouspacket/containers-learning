@@ -22,3 +22,7 @@ variable "name" {
 variable "region" {
   type = string
 }
+variable "eksversion"{
+  type="string"
+  default = "1.24"
+}
