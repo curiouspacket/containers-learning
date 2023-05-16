@@ -1,0 +1,15 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eksworkshop-cluster
+  region: us-west-2
+
+managedNodeGroups:
+  - name: ng-2-workers
+    desiredCapacity: 3
+    instanceType: t3.small
+    privateNetworking: true
+    ssh:
+     enableSsm: true
+     publicKeyName: "eksnetworkworkshop"

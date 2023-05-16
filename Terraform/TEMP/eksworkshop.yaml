@@ -1,0 +1,48 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eksworkshop-cluster
+  region: us-west-2
+  version: "1.21"
+
+#availabilityZones: ["us-west-2a", "us-west-2b", "us-west-2c"]
+
+vpc:
+  id: "vpc-09a09cfc443b04e23"
+  subnets:
+    private:
+      us-west-2a:
+          id: "subnet-01df80ac04870dfee"
+      us-west-2b:
+          id: "subnet-09023b8ad7db793f4"
+      us-west-2c:
+          id: "subnet-031a9d82635ddecfe"
+    public:
+      us-west-2a:
+          id: "subnet-03d7c5b9b6c435161"
+      us-west-2b:
+          id: "subnet-07d729ba17eec42cc"
+      us-west-2c:
+          id: "subnet-05f050a186b596559"
+
+managedNodeGroups:
+- name: nodegroup
+  desiredCapacity: 3
+  #Depending on Lab
+  #instanceType: t3.small
+  instanceType: m5.large
+  privateNetworking: true
+  ssh:
+    enableSsm: true
+    publicKeyName: "eksnetworkworkshop"
+
+
+# To enable all of the control plane logs, uncomment below:
+# cloudWatch:
+#  clusterLogging:
+#    enableTypes: ["*"]
+
+secretsEncryption:
+  keyARN: arn:aws:kms:us-west-2:445780167624:key/15a18a73-de42-4f16-9bfe-9b3d66b051e4
